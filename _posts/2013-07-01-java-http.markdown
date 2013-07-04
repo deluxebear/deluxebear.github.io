@@ -1,0 +1,23 @@
+---
+layout: post
+title:  "java模拟登陆微信公众平台（一）"
+date:   2013-07-01 23:12:19
+categories: java
+---
+
+微信公众平台的API未提供主动向关注者发送消息的功能，如果要向关注者发送消息只能登录微信公众平台进行发送，而如果想在自己的应用中向某个关注者发送消息，目前只能通过模拟登录到微信公众平台的方式进行发送，如果要用java实现的话，可以借助[Apache httpclient][Apache httpclient]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[Apache httpclient]: http://hc.apache.org/httpcomponents-client-ga/index.html
