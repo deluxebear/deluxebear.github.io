@@ -6,9 +6,6 @@ categories: java，jrebel
 ---
 
 
-Jrebel 5.X破解方法
-===============
-
 ### 1、将jrebel.jar导入到lib中
 ### 2、创建生成授权文件的类
 
