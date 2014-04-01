@@ -1,0 +1,70 @@
+---
+layout: post
+title:  "Jrebel 5.X破解方法"
+date:   2014-03-01 21:12:19
+categories: java，jrebel
+---
+
+
+Jrebel 5.X破解方法
+===============
+
+### 1、将jrebel.jar导入到lib中
+### 2、创建生成授权文件的类
+
+```
+import com.zeroturnaround.licensing.UserLicense;
+import java.io.*;
+import java.util.*;
+
+public class CreateLic {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+
+
+        Map dataMap2 = new HashMap();
+
+        Calendar expirationDate = new GregorianCalendar(9999, 11, 31);//license有效期
+
+        dataMap2.put("validUntil",expirationDate.getTime());
+
+        dataMap2.put("Name","Deluxebear");
+
+        dataMap2.put("Product","JavaRebel");
+
+        dataMap2.put("Seats","Unlimited");
+
+        dataMap2.put("override","true");
+
+        dataMap2.put("Comment","*** Use for study only! ***");
+
+        dataMap2.put("enterprise","true");
+
+        dataMap2.put("Organization","jetems");
+
+        dataMap2.put("commercial","true");
+
+        dataMap2.put("noBanner","false");
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+
+        ObjectOutputStream oos = new ObjectOutputStream(bos);
+
+        oos.writeObject(dataMap2);
+
+        byte[] licenseBuf = bos.toByteArray();
+        UserLicense userLicense1=new UserLicense();
+        userLicense1.setLicense(licenseBuf);
+        ObjectOutputStream os = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(new File("d:/jrebel.lic"))));
+
+        os.writeObject(userLicense1);
+        os.close();
+
+    }
+}
+```
+
+### 3、生成jrebel.lic授权文件
+### 4、用jd-gui打开jrebel.jar文件
+### 5、使用Search功能查找getSignature方法
+### 6、在com.zeroturnaround.javarebel下找到使用了getSignature方法的类，将返回bool的方法找到
+### 7、使用rej打开jrebel.jar文件,针对第六步找到的方法，rej设置boolean方法永远返回true，在方法体第一行增加：iconst_1，在方法体第二行增加：ireturn
